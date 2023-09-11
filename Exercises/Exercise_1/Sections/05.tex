@@ -1,0 +1,30 @@
+\section{Problem 5}
+A pn-junction has donor and acceptor concentrations of $N_D = 2.5 \times 10^{18} cm^{-3}$ and
+$N_A = 1.2 \times 10^{23} cm^{-3}$. Assume room temperature and $\Phi_0 = 0.566 V$. Calculate the
+depletion region depths $(X_n, X_p)$ for a reverse bias of $1.1 V$. Any comments to your results?
+
+Given $(N_A>>N_D)$ we can approximate that 
+
+\begin{equation*}
+    \mathrm{x}_{\mathrm{n}} \cong\left[\frac{2 \mathrm{~K}_{\mathrm{s}} \varepsilon_{0}\left(\Phi_{0}+\mathrm{V}_{\mathrm{R}}\right)}{\mathrm{q} \mathrm{N}_{\mathrm{D}}}\right]^{1 / 2} \mathrm{x}_{\mathrm{p}} \cong\left[\frac{2 \mathrm{~K}_{\mathrm{s}} \varepsilon_{0}\left(\Phi_{0}+\mathrm{V}_{\mathrm{R}}\right) \mathrm{N}_{\mathrm{D}}}{\mathrm{qN}_{\mathrm{A}}^{2}}\right]^{1 / 2}
+\end{equation*}
+
+Here, \( \varepsilon_{0} \) is the permittivity of free space (equal to \( 8.854 \times 10^{-12} \mathrm{~F} / \mathrm{m} \) ), \( \mathrm{V}_{\mathrm{R}} \) is the reverse-bias voltage of the diode, and \( \mathrm{K}_{\mathrm{s}}=11.8 \) is the relative permittivity of silicon. By replacing the variables in the equation above with the given values, we get:
+
+\begin{equation*}
+    X_n \cong \left[\frac{2 \times 11.7 \times 8.854 \times 10^{-12} \, \text{F/m} \times (0.566 \, \text{V} + 1.1 \, \text{V})}{1.6 \times 10^{-19} \, \text{C} \times 2.5 \times 10^{18} \, \text{cm}^{-3}}\right]^{1/2}
+\end{equation*}
+
+\begin{equation*}
+    X_p \cong \left[\frac{2 \times 11.7 \times 8.854 \times 10^{-12} \, \text{F/m} \times (0.566 \, \text{V} + 1.1 \, \text{V}) \times 2.5 \times 10^{18} \, \text{cm}^{-3}}{1.6 \times 10^{-19} \, \text{C} \times (1.2 \times 10^{23} \, \text{cm}^{-3})^2}\right]^{1/2}
+\end{equation*}
+
+This equals to:
+
+\begin{equation*}
+    \begin{array}
+        {l}X_{n} \approx 0.0294 \mu \mathrm{m} \\ X_{p} \approx 6.12 \times 10^{-7} \mu \mathrm{m}
+    \end{array} 
+\end{equation*}
+
+Here we can se that $X_n$ is substantialy larger than $X_p$. This case is called a single-sided diode.

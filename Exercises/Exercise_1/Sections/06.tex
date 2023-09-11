@@ -1,0 +1,35 @@
+\section{Problem 6}
+
+The small-signal model of a forward-biased diode, from chapter 1 in Analog Integrated Circuit Design by Carusone, Johns and Martin (”CJM”), includes two capacitances.
+
+\subsection*{a) Give a brief explanation about each of the two capacitive contributions and how
+they emerge.}
+
+The two capacitive contributions mentioned in the 1st chapter in Analog Integrated Circuit Design by Carusone is depletion capitance, $C_j$ and  diffusion capacitance also called diffusion capacitance $C_d$
+
+The depletion capitance, $C_j$ arises from the depletion region of a pn-junction. This region comes from charge carriers from both side recombine, creating a region around the junction with immobile charges. This creates an electric field. When we apply reverse bias to the pn-junction, the depletion region widens, and the electric field increases. This behavior can be modeled as a parallel-plate capacitor, where the "plates" are the n-type and p-type regions separated by the depletion region.  This capacitance is given by:
+
+\begin{equation*}
+    \mathrm{C}_{\mathrm{j}}=\frac{\mathrm{C}_{\mathrm{j} 0}}{\left(1+\frac{\mathrm{V}_{\mathrm{B}}}{\Phi_{0}}\right)^{\mathrm{m}_{\mathrm{j}}}}
+\end{equation*}
+
+where
+
+\begin{equation*}
+    \mathrm{C}_{\mathrm{j} 0}=\left(1-\mathrm{m}_{\mathrm{j}}\right)\left[2 \mathrm{qK}_{\mathrm{s}} \varepsilon_{0} \frac{\mathrm{N}_{\mathrm{A}} \mathrm{N}_{\mathrm{D}}}{\mathrm{N}_{\mathrm{A}}+\mathrm{N}_{\mathrm{D}}}\right]^{1-\mathrm{m}_{\mathrm{j}}} \frac{1}{\Phi_{0}^{\mathrm{m}_{\mathrm{j}}}} 
+\end{equation*}
+
+
+The diffusion capitance arises from the movement of charge carriers across the junction under forward bias conditions. This process can be modelled as a capacitor storing charge. When a forward bias is applied,  $C_d$ is given by:
+
+\begin{equation*}
+    \mathrm{C}_{\mathrm{d}}=\tau_{\mathrm{T}} \frac{\mathrm{I}_{\mathrm{D}}}{\mathrm{V}_{\mathrm{T}}} 
+\end{equation*}
+
+
+
+
+\subsection*{b) A diode is biased for a current of $1 mA$, and has a transit time of $50 ps$. Estimate
+it’s small-signal resistance and diffusion capacitance.}
+
+By using the equation for $C_d$ above and assuming that we are in room temperature; $V_T\approx26 mV$ at roomtemperature, we get that $C_D=3.846\times 10^{-13}F$.
