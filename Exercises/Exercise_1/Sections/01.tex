@@ -1,0 +1,32 @@
+\section{Problem 1}
+
+A pn-junction has a donor concentration of $N_D = 10^{25} \frac{electrons}{m^3}$ and an acceptor concentration of $N_A = 5\cdot 10^{22} \frac{holes}{m^3}$ at a temperature of $289 K$. Assume that $n_i = 1.1\cdot 10^{16} \frac{carriers}{m^3}$ at room temperature. What is the built-in junction potential $\Phi_0$?
+
+The built-in voltage of an open-circuit pn junction is:
+
+\begin{equation}
+    \Phi_0 = V_T \ln (\frac{N_A N_D}{N_i^2})
+    \label{eq:Phi_0}
+\end{equation}
+
+\begin{equation}
+    V_T=\frac{kT}{q}
+    \label{eq:V_T}
+\end{equation}
+
+Where $T$ is the temperature in degrees Kelvin ($\cong 300 ^o K$) at room temperature, $k$ is the Boltzmann's constant $1.38\cdot 10^{-23} JK^{-1}$, and q is hte charge of an electron ($1.602\cdot 10^{-19} C$). At room temperature, $V_T\approx 26 mV$
+
+In this problem $N_A=5\cdot 10^{22} \frac{holes}{m^3}$, $N_D = 10^{25} \frac{electrons}{m^3}$, $n_i = 1.1\cdot 10^{16} \frac{carriers}{m^3}$ and $T=289 K$. By using equation \ref{eq:Phi_0} and \ref{eq:V_T} we get:
+
+\begin{equation}
+    V_T=\frac{1.38\cdot 10^{-23} JK^{-1} \cdot 289K}{1.602\cdot 10^{-19} C} = 0.025V
+\end{equation}
+
+and
+
+\begin{equation}
+    \Phi_0 = 0.025V \ln (\frac{5\cdot 10^{22} \frac{holes}{m^3} \cdot 10^{25} \frac{electrons}{m^3}}{(1.1\cdot 10^{16} \frac{carriers}{m^3})^2}) = 0.899V
+\end{equation}
+
+The built-in junction potential $\Phi_0 = 899mV$
+
