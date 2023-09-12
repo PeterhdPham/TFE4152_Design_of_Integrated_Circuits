@@ -2113,6 +2113,16 @@ INPUT ./Sections/04.tex
 INPUT ./Sections/04.tex
 INPUT ./Sections/04.tex
 INPUT ./Sections/04.tex
+INPUT ./Sections//../figures/4b.png
+INPUT ./Sections//../figures/4b.png
+INPUT ./Sections//../figures/4b.png
+INPUT ./Sections//../figures/4b.png
+INPUT ./Sections//../figures/4b.png
+INPUT ./Sections//../figures/4d.png
+INPUT ./Sections//../figures/4d.png
+INPUT ./Sections//../figures/4d.png
+INPUT ./Sections//../figures/4d.png
+INPUT ./Sections//../figures/4d.png
 INPUT ./Sections/05.tex
 INPUT ./Sections/05.tex
 INPUT ./Sections/05.tex
@@ -2123,10 +2133,6 @@ INPUT ./Sections/06.tex
 INPUT ./Sections/06.tex
 INPUT ./Sections/06.tex
 INPUT ./Sections/06.tex
-INPUT ./Sections/appendix.tex
-INPUT ./Sections/appendix.tex
-INPUT ./Sections/appendix.tex
-INPUT ./Sections/appendix.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
 INPUT main.aux

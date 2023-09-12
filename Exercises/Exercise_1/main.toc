@@ -2,7 +2,6 @@
 \contentsline {section}{Problem 2}{4}{section*.3}%
 \contentsline {section}{Problem 3}{6}{section*.8}%
 \contentsline {section}{Problem 4}{8}{section*.13}%
-\contentsline {section}{Problem 5}{9}{section*.15}%
-\contentsline {section}{Problem 6}{10}{section*.16}%
-\contentsline {section}{Appendix}{12}{section*.19}%
+\contentsline {section}{Problem 5}{10}{section*.19}%
+\contentsline {section}{Problem 6}{11}{section*.20}%
 \contentsfinish 

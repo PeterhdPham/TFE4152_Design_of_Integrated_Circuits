@@ -2,5 +2,27 @@
 This problem will simulate a diode using AIM-spice. All simulations should be performed
 at room temperature ($27^o$).
 
-\subsection*{a) Describe the circuit of Figure \ref*{fig:pn-junction} in AIM-Spice using the diode model ‘DBSBdiode.mod’ found on blackboard. The model files found on blackboard models a $100 \mu m \times 100 \mu m$ diode}
+\subsection*{b) Sweep the voltage source from $0 V$ to $4.8 V$ and look at the leakage current. What happens for larger reverse bias voltages? Is there a linear relationship?}
 
+\importimage{4b}
+
+The current goes to negative infinity, this is not linear.
+
+\subsection*{c) Find the leakage current for a $100 \mu m \times 100 \mu m$ diode at $4.8 V$ reverse bias.}
+
+It wasnt posible, i assume that i did the simulation incorrectly.
+
+\subsection*{d) If the diode area is increased to $200 \mu m \times 200 \mu m$, how much does the leakage current increase at $4.8 V$ reverse bias? Is there a linear relationship?}
+
+\importimage{4d}
+It is still not linear according to my simulations.
+
+\subsection*{e) Look at the model file of the diode. This file contains several parameters used to
+model the diode. Try to figure out which one corresponds to the built-in junction
+voltage. What is the name used for this parameter and what is the value?}
+
+The name used for this parameter is VJ, there the value is 8.9e-1
+
+\subsection*{f) Now forward bias the $100 \mu m \times 100 \mu m$ diode. Sweep the voltage source from zero volts up to a suitable voltage and look at the diode current. Does the value of the built-in junction potential in the model file correspond reasonably well to what is seen from simulations?}
+
+No.
