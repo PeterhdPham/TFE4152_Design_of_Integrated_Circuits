@@ -1,0 +1,45 @@
+\section{Problem 1}
+From the problem text, we are given this information:
+
+\begin{table}[h]
+    \centering
+    \caption{NMOS Transistor Parameters in 180 nm Technology}
+    \begin{tabular}{ccc}
+        \hline
+        Parameter & Unit/Equation & Value \\
+        \hline
+        \( V_{\text{eff}} \) & \( \text{V} \) & \( 0.2 \) \\
+        \( V_{\text{Drain}} \) & \( \text{V} \) & \( 0.2 \) \\
+        \( V_{\text{Source}} \) & \( \text{V} \) & \( 0 \) \\
+        \( W \) & \( \mu\text{m} \) & \( 0.5 \) \\
+        \( L \) & \( \mu\text{m} \) & \( 0.2 \) \\
+        \( T \) & \( K \) & \( 293 \) \\
+        \( \mu C_{OX} \) & \( \frac{\mu \text{A}}{\text{V}^2} \) & \( 270 \) \\
+        \( V_{t0} \) & \( \text{V} \) & \( 0.45 \) \\
+        \( \lambda \cdot L \) & \( \frac{\mu\text{m}}{\text{V}} \) & \( 0.08 \) \\
+        \( C_{OX} \) & \( \frac{\text{fF}}{\mu\text{m}^2} \) & \( 8.5 \) \\
+        \( t_{OX} \) & \( \text{nm} \) & \( 5 \) \\
+        \( n \) & \( - \) & \( 1.6 \) \\
+        \( \theta \) & \( \frac{1}{\text{V}} \) & \( 1.7 \) \\
+        \( m \) & \( - \) & \( 1.6 \) \\
+        \( \frac{C_{OV}}{W} = L_{OV} C_{OX} \) & \( \frac{\text{fF}}{\mu\text{m}} \) & \( 0.35 \) \\
+        \( \frac{C_{db}}{W} \approx \frac{C_{sb}}{W} \) & \( \frac{\text{fF}}{\mu\text{m}} \) & \( 0.5 \) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+
+\subsection*{a) What can you say about the region of operation for the transistor, based on the description above?}
+
+The region of operation where $\text{V}_\text{DS}>\text{V}_\text{DS-sat}$, the drain current is in is independend of $\text{V}_\text{DS}$ and is called the active region: 
+
+\importimage{region_of_operation}
+
+Based on the paramters in the table and figure above we can say that the region of operation is when $\text{V}_\text{DS}>0.2\text{V}$ 
+
+as  
+
+\begin{equation*}
+    V_{\text {DS-sat }}=V_{G S}-V_{t n}=V_{\text {eff }} 
+\end{equation*}
