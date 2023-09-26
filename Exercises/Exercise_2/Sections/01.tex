@@ -34,12 +34,93 @@ From the problem text, we are given this information:
 
 The region of operation where $\text{V}_\text{DS}>\text{V}_\text{DS-sat}$, the drain current is in is independend of $\text{V}_\text{DS}$ and is called the active region: 
 
-\importimage{region_of_operation}
+\importimagewcaption{region_of_operation}{The \( I_{D} \) versus \( V_{D S} \) curve for an ideal MOS transistor. For \( \mathrm{V}_{\mathrm{DS}}>\mathrm{V}_{\mathrm{DS} \text {-sat, }} \mathrm{I}_{\mathrm{D}} \) is approximately constant.}
 
-Based on the paramters in the table and figure above we can say that the region of operation is when $\text{V}_\text{DS}>0.2\text{V}$ 
-
-as  
+Based on the paramters in the table and figure above we can say that the region of operation is when $\text{V}_\text{DS}>0.2\text{V}$ as $V_{\text {DS-sat }}$ is given by
 
 \begin{equation*}
     V_{\text {DS-sat }}=V_{G S}-V_{t n}=V_{\text {eff }} 
 \end{equation*}
+
+\subsection*{b) Consider a similar case as described above. except that \( V_{D S} \) is increased by \( 50 \mathrm{mV} \). Can you estimate the resulting drain current, \( I_{D S} \)?}
+From figure \ref{fig:region_of_operation}, we can se that the current $I_D$ changes marginaly in the active region when $V_DS$ increases, therfore the resulting drain current can be estimated to be  
+
+\begin{equation*}
+    I_{D}=\frac{2.7\cdot10^{-4}}{2} \frac{5\cdot10^{-5}}{2\cdot10^{-5}}\left(0.2\right)^{2}=13.5\mu A
+\end{equation*}
+
+\subsection*{c) Estimate the maximum value for $V_{\text{eff}}$ given that you would avoid mobility degradation for this transistor.}
+Due to mobility degadation, increases in $V_{\text{eff}}$ beyond $\frac{1}{2\theta}$:
+\begin{itemize}
+    \item fail to provide significant increases in small-signal transconductance,
+    \item reduce the available signal swing limited by the fixed supply voltages, and
+    \item reduce transistor intrinsic gain \textbf{$A_i$} dramatically
+\end{itemize}
+
+Therefore the maximum value for $V_{\text{eff}}$ given that i would avoid mobility degradation for this transistor is 
+
+\begin{align*}
+    V_{\text{eff}}&<\frac{1}{2\cdot1.7}\\
+    V_{\text{eff}}&<\frac{5}{17}V
+\end{align*}
+
+
+\subsection*{d) Calculate the small signal output resistance for the transistor when it's operating in the active region, and square-law behaviour holds.}
+
+We can use this equation
+
+\begin{equation*}
+    r_{o}=\frac{1}{\lambda \cdot I_{D}}
+\end{equation*}
+
+to find the small signal output resistance using the current $I_D$ found in b)
+
+\begin{equation*}
+    r_{o}=\frac{1}{0.4 \frac{1}{V} \cdot 13.5\mu A}=185.2k \Omega
+\end{equation*}
+
+\subsection*{e) What would be the small-signal output resistance if the \( \mathrm{W} / \mathrm{L} \) ratio was kept, and the gate length multiplied by 3?}
+
+By keeping the \( \mathrm{W} / \mathrm{L} \) ratio, we know that the current $I_D$ will stay the same,
+
+\begin{equation*}
+    \Lambda=\frac{0.08}{0.6}=\frac{2}{15}\frac{1}{V}
+\end{equation*}
+
+This gives us
+\begin{equation*}
+    r_{o}=\frac{1}{\frac{2}{15} \frac{1}{V} \cdot 13.5\mu A}=555.6k \Omega
+\end{equation*}
+
+\subsection*{f) Calculate the small-signal transconductance, \( g_{m} \), for the transistor under the conditions relevant for problem b), above.}
+
+The small-signal transconductance, \( g_{m} \) is given by 
+
+\begin{equation*}
+    \frac{2 \mathrm{I}_{\mathrm{D}}}{\mathrm{V}_{\mathrm{eff}}}=\mu_{\mathrm{n}} \mathrm{C}_{\mathrm{ox}} \frac{\mathrm{W}}{\mathrm{L}} \mathrm{V}_{\mathrm{eff}}
+\end{equation*}
+
+\begin{equation*}
+    g_m=\frac{2 \mathrm{I}_{\mathrm{D}}}{\mathrm{V}_{\mathrm{eff}}}=\frac{2\cdot 13.5\mu A}{0.2V}=1.35\cdot10^{-4}
+\end{equation*}
+
+\subsection*{g) Indicate roughly the value for \( g_{s} \) and draw the low-frequency small-signal schematics for the transistor in the active region, and include relevant values based on what you have been asked to find, this far. Use \( r_{\text {out }} \) from \( 1 \mathrm{~d}) \).}
+
+\importimage{smallsignal.png}
+
+
+\subsection*{h) Problem 1 c) relates to mobility degradation for relatively high values of \( V_{D S} \). Can you point to any other potential problems that could emerge from high \( V_{D S} \) voltages, especially for the shortest gate-lengths?}
+
+
+
+
+\subsection*{i) Make a sketch of the small-signal diagram from \( 1 \mathrm{~g} \) ), where you include the parasitic capacitances.}
+
+
+\subsection*{j) Consider the layout in Figure 2.14 in CJM and an implementation in the \( 0.8 \mu \mathrm{m} \) process from Table \( 1.5 \mathrm{in} \) CJM for your calculations, and Let \( C_{j s} \) have a value of nfF in your expression. Find an expression for the smallsignal capacitance between the source and bulk nodes.}
+
+
+\subsection*{k) Estimate the minimum \( V_{G S} \) required for this NMOS transistor to be in the active region.}
+
+
+\subsection*{l) Circuits may in some cases operate with a supply voltage below the absolute values of both the pmos and nmos threshold voltages. Could you explain about when this could be beneficial for analog or digital circuits, or both?}
