@@ -1,1 +1,27 @@
 \section{Problem 2}
+\importimagewcaption{IVgs.png}{$I_D$ vs $V_{GS}$}
+\importimagewcaption{IVds.png}{$I_D$ vs $V_{DS}$}
+\importimagewcaption{id.png}{Drain current}
+\importimagewcaption{gm.png}{transconductance}
+\importimagewcaption{rds.png}{small signal output resistance}
+
+\begin{lstlisting}[language=, caption=NMOS SPICE Netlist, label=lst:netlist]
+* NMOS Characteristics
+.include /home/peter/Software/aimspice/p18_cmos_models_ff.inc
+
+* Defining NMOS transistor
+M1 drain gate 0 0 NMOS L=0.5u W=50u
+
+* Defining voltage sources
+Vgs GATE 0 DC 0.9V
+Vds DRAIN 0 DC 1.8V
+
+.dc Vgs 0 1.8 0.01
+.plot dc I(Vgs)
+.plot dc I(Vds)
+.plot dc id(M1)
+.plot dc gm(M1)
+.plot dc rds(M1)
+.end
+\end{lstlisting}
+    

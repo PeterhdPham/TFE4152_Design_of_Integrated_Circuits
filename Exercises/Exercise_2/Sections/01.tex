@@ -108,19 +108,53 @@ The small-signal transconductance, \( g_{m} \) is given by
 
 \importimage{smallsignal.png}
 
-
 \subsection*{h) Problem 1 c) relates to mobility degradation for relatively high values of \( V_{D S} \). Can you point to any other potential problems that could emerge from high \( V_{D S} \) voltages, especially for the shortest gate-lengths?}
 
+In shorter gate lengths, the carrier velocity in the channel can saturate at lower $V_DS$ due to the high electric field, affecting the transistor's performance and linearity.
 
 
+\subsection*{i) Make a sketch of the small-signal diagram from 1g), where you include the parasitic capacitances.}
+\importimage{smallsignalWC.png}
 
-\subsection*{i) Make a sketch of the small-signal diagram from \( 1 \mathrm{~g} \) ), where you include the parasitic capacitances.}
+\subsection*{j) Consider the layout in Figure \ref{fig:2.14.png} in CJM and an implementation in the \( 0.8 \mu \mathrm{m} \) process from Table 1.5 in CJM for your calculations, and Let \( C_{j s} \) have a value of nfF in your expression. Find an expression for the smallsignal capacitance between the source and bulk nodes.}
+
+\importimagewcaption{2.14.png}{(a) A simplified view of a partially finished transistor and (b) the corresponding layout of the active, polysilicon, and contact masks.}
+
+\begin{table}[H]
+    \centering
+    \caption{0.8 $\mu \mathrm{m}$ Technology Parameters}
+        \begin{tabular}{ccc}
+        \hline
+        \textbf{Technology} & \textbf{NMOS} & \textbf{PMOS} \\
+        \hline
+        \( \mu \mathrm{C}_{\mathrm{ox}} \left( \mu \mathrm{A} / \mathrm{V}^2 \right) \) & 92 & 30 \\
+        \( \mathrm{V}_{\mathrm{t} 0} (\mathrm{V}) \) & 0.80 & -0.90 \\
+        \( \lambda \cdot \mathrm{L} (\mu \mathrm{m} / \mathrm{V}) \) & 0.12 & 0.08 \\
+        \( \mathrm{C}_{\mathrm{ox}} \left( \mathrm{fF} / \mu \mathrm{m}^2 \right) \) & 1.8 & 1.8 \\
+        \( \mathrm{t}_{\mathrm{ox}} (\mathrm{nm}) \) & 18 & 18 \\
+        \( \mathrm{n} \) & 1.5 & 1.5 \\
+        \( \theta (1 / \mathrm{V}) \) & 0.06 & 0.135 \\
+        \( \mathrm{m} \) & 1.0 & 1.0 \\
+        \( \mathrm{C}_{\mathrm{ov}} / \mathrm{W} = \mathrm{L}_{\mathrm{ov}} \mathrm{C}_{\mathrm{ox}} \left( \mathrm{fF} / \mu \mathrm{m} \right) \) & 0.20 & 0.20 \\
+        \( \mathrm{C}_{\mathrm{db}} / \mathrm{W} \approx \mathrm{C}_{\mathrm{sb}} / \mathrm{W} \left( \mathrm{fF} / \mu \mathrm{m} \right) \) & 0.50 & 0.80 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+$C_{s b}$ is given by
+\begin{align*}
+    C_{s b}&=\left(A_{s}+A_{c h}\right) C_{j s}\\
+    C_{s b}&=\left(\lambda^2+W\cdot L\right) nfF
+\end{align*}
 
 
-\subsection*{j) Consider the layout in Figure 2.14 in CJM and an implementation in the \( 0.8 \mu \mathrm{m} \) process from Table \( 1.5 \mathrm{in} \) CJM for your calculations, and Let \( C_{j s} \) have a value of nfF in your expression. Find an expression for the smallsignal capacitance between the source and bulk nodes.}
+where \( A_{s} \) is the area of the source junction, \( A_{c h} \) is the area of the channel (i.e., WL) and \( C_{j s} \) is the depletion capacitance of the source junction, given by
+
+\[\mathrm{C}_{\mathrm{js}}=\frac{\mathrm{C}_{\mathrm{j} 0}}{\sqrt{1+\frac{\mathrm{V}_{\mathrm{sB}}}{\Phi_{0}}}}\]
 
 
 \subsection*{k) Estimate the minimum \( V_{G S} \) required for this NMOS transistor to be in the active region.}
-
+From 1a) we have that the region of operation is when $V_{DS}>V_{GS}-V_t$. As we dont have $V_{DS(min)}$, I assume that it is a lot smaler than $V_{GS}-V_t$. Therefore i would estimate the minimum \( V_{G S} \) required for this NMOS transistor to be in the active region is $0.08V$.
 
 \subsection*{l) Circuits may in some cases operate with a supply voltage below the absolute values of both the pmos and nmos threshold voltages. Could you explain about when this could be beneficial for analog or digital circuits, or both?}
+From figure \ref{fig:region_of_operation} we can se that the curve is quite linear at first, this can work as a amplifier in a analog circuit. This gives us controll of the current in the circuit.

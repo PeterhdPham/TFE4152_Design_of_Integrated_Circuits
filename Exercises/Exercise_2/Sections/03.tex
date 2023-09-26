@@ -1,1 +1,20 @@
 \section{Problem 3}
+\textbf{Statistical variation of device parameters on a wafer predicts a Gaussian distribution with variance \( \sigma^{2}(\Delta P)=\frac{\left(A_{p}\right)^{2}}{W L}+\left(S_{p}\right)^{2} D^{2} \), where \( \Delta P \) is the difference in some device parameter \( P, D \) is the distance between two devices, and \( W \) and \( L \) their dimensions. \( A_{p} \) and \( S_{p} \) are constants, usually obtained from measurements. The standard deviation is the square root of the variance. Among the most important random variations in most analog circuits result in \( V_{t} \) mismatch. Figure \ref{fig:P3.png} shows a differential pair. For such a circuit, it is important that transistors \( Q 1 \) and \( Q 2 \) are identical. Assume that the transistors in Figure 1 are closely spaced, so that the area dependent term in the above equation dominates. Given that \( W=2 \mu \mathrm{m} \) and \( L=0.7 \mu \mathrm{m} \) for the 2 transistors in Figure 1, what could be done to \( W L \) if you had to reduce the standard deviation of the \( V_{t} \) mismatch to \( 25 \% \) ?}
+
+\importimagewcaption{P3.png}{Differential pair.}
+
+Standart deviation given the information above is 
+
+\begin{align*}
+    \sigma(\Delta P)&=\sqrt{\frac{\left(A_{p}\right)^{2}}{W L}}\\
+    \sigma(\Delta P)&=\frac{\left(A_{p}\right)}{\sqrt{W L}}\\
+\end{align*}
+
+If we reduce the standard deviation to $25\%$ then we must increase $W$ and or $L$
+
+\begin{align*}
+    25\% \sigma(\Delta P)&=\frac{\left(A_{p}\right)}{\sqrt{W L}\cdot4}\\
+    25\% \sigma(\Delta P)&=\frac{\left(A_{p}\right)}{\sqrt{2W L}}\\
+\end{align*}
+
+To reduce the standard deciation of the $V_t$ mismatch to $25\%$ i can increase $W$ to $4\mu m$ or $L$ to $1.4 \mu m$.
