@@ -1,0 +1,20 @@
+*Cascode current mirrors
+vdd 1 0 1V
+I1 1 2 100U
+
+VDC1 gnd 0 0
+
+Vgate 4 0 1V
+.dc Vgate 0 1 0.1
+
+
+M1 2 2 3 0 NMOS L=1U W=10U
+M2 4 2 5 0 NMOS L=1U W=10U
+M3 3 3 0 0 NMOS L=1U W=10U
+M4 5 3 0 0 NMOS L=1U W=10U
+
+.plot id(M1) id(M2)
+
+.param proc_delta = 1
+.param vt_shift = 0
+.include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/p18_model_card.inc

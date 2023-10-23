@@ -1,0 +1,81 @@
+\section{Problem 2}
+
+\textbf{Some effects of process variations related to the current mirror in Figure \ref{fig:Current_mirror_using_a_resistor.png} should be investigated. In this problem, we want $I_{D, M 1} \approx 10 \mu \mathrm{A}$. The supply voltage is set to $V_{D D}=1.8 \mathrm{~V}$. The transistor technology that will be used is a $180 \mathrm{~nm}$ transistor technology.}
+
+\importimagewcaptionw{Current_mirror_using_a_resistor.png}{Current mirror using a resistor.}{0.4}
+
+\subsection*{a) Show that the voltage at node $V_x$ is $V_x=V_{t n}+V_{e f f}$, where $V_{e f f}=V_{G S, M 1}-V_{t n}$}
+
+In other words, the task is to show that $V_x=V_{G S, M 1}$, as you can see in figure \ref{fig:Current_mirror_using_a_resistor.png}, $V_x$ is at the same node as $V_{G S, M 1}$, as $V_{G S, M 1}$ is basically the gate-source voltage then the voltage at node $V_x$ must be equal to $V_x=V_{t n}+V_{e f f}$, where $V_{e f f}=V_{G S, M 1}-V_{t n}$. (Is this a trick question?)
+
+\subsection*{b) Use $\mu_n C_{o x}=250 \mu \mathrm{A} / \mathrm{V}^2$ and $V_{t n}=0.45 \mathrm{~V}$ and find the voltage at node $V_x$. Use $W / L=5$ for both transistors and $L=1 \mu \mathrm{m}$.}
+Assumin that we are in the Active region, we can use the equation for $I_D$
+
+\[I_D=\frac{\mu_n C_{o x}}{2} \frac{W}{L}\left(V_{G S}-V_{t n}\right)^2\]
+
+As we need to find $V_{G S, M 1}$
+
+\[V_{G S, M1}=\sqrt{I_{D, M1}\frac{2}{\mu_n C_{o x}}\frac{L}{W}}+V_{t n}\]
+
+this gives us
+
+\[V_{GS, M1} = \sqrt{10 \mu A \cdot \frac{2}{250 \mu A/V^2} \cdot \frac{1 \mu m}{5\mu m}} + 0.45 V=0.576V\]
+
+The voltage at node $V_x$ is $V_x=0.576V$
+
+\subsection*{c) Then find a suitable value for $R$ to satisfy our current requirement of $I_{D, M 1} \approx 10 \mu \mathrm{A}$. Use AIM-Spice to simulate your circuit to find $I_{D, M 1}$.}
+
+As $V_{DD}=1.8V$ and $V_x=0.576V$, we get $V_{R}=1.8V-0.576V=1.224V$. Using ohm's law $\frac{V}{I}=R$ we get
+
+\[R=\frac{1.224V}{10^{-5}A}=122400\Omega\]
+
+\importimagewcaption{AIM-Spice2c.png}{Simulated $I_{D, M 1}$ and $I_{D, M 2}$}
+
+
+\subsection*{d) Use AIM-Spice to simulate the current $I_{D, M 2}$ through M2 over corners. Try for TT, SS and FF. Write the simulated values down in a table.}
+
+\begin{table}[H]
+\centering
+\caption{Simulated values of \(I_{D, M 2}\) in different corners}
+\label{tab:IDM2_corners}
+\begin{tabular}{cc}
+\hline
+\textbf{Corner} & \textbf{\(I_{D, M 2}\) [\(\mu A\)]} \\
+\hline
+TT & 11.73 \\
+SS & 10.59 \\
+FF & 12.90 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection*{e) Use AIM-Spice to simulate the output impedance $r_{d s, M 2}$ over corners. Try for TT, SS and FF. Write the simulated values down in a table.}
+
+\begin{table}[H]
+    \centering
+    \caption{Simulated values of \(r_{d s, M 2}\) in different corners}
+    \label{tab:rdsM2_corners}
+    \begin{tabular}{cc}
+    \hline
+    \textbf{Corner} & \textbf{\(r_{d s, M 2}\) [\(k\Omega\)]} \\
+    \hline
+    FF & 282 \\
+    SS & 480 \\
+    TT & 367 \\
+    \hline
+    \end{tabular}
+    \end{table}
+
+
+    \subsection*{f) How will these variations affect the gain of an amplifier?}
+
+    Process variations, as observed in sections d) and e), can notably impact the performance of an amplifier in several ways, particularly its gain. Let's analyze how the variations in \(I_{D, M 2}\) and \(r_{d s, M 2}\) across different corners (TT, SS, FF) could affect the gain.
+    
+    \begin{itemize}
+        \item \textbf{Variations in \(I_{D, M 2}\):} From Table \ref{tab:IDM2_corners}, it is evident that \(I_{D, M 2}\) exhibits variations across different process corners. The deviation of \(I_{D, M 2}\) from its intended value (around \(10 \mu A\)) might impact the biasing of the MOSFETs in the current mirror, potentially affecting the quiescent (DC) operating point of any amplifier stage utilizing this current mirror. This could, in turn, influence the linearity and dynamic range of the amplifier.
+        
+        \item \textbf{Variations in \(r_{d s, M 2}\):} As observed in Table \ref{tab:rdsM2_corners}, the output impedance, \(r_{d s, M 2}\), also varies with process corners. The gain of a MOSFET amplifier in a configuration where \(r_{d s, M 2}\) contributes to the load (such as a common source amplifier with diode-connected load) is directly proportional to this output impedance. Therefore, variations in \(r_{d s, M 2}\) due to process variations will directly impact the gain of such amplifiers.
+    \end{itemize}
+    

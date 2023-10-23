@@ -1,0 +1,27 @@
+\section{Problem 1}
+
+\subsection*{a) Which circuit could the layout in Figure \ref{fig:Elements_of_a_layout.png} represent? Explain your answer.}
+\importimagewcaption{Elements_of_a_layout.png}{Elements of a layout.}
+
+In figure \ref{fig:Elements_of_a_layout.png} we can se a simple current mirror in the p-well, and a source follower. Here the current mirror supplies the bias current of source-follower. These transistors together are commonly used as $\textit{voltage buffers}$. Some of the perks of using this circuit as a source foller is that it maintains the signal input signal without affecting the system in itself as it usally have a high input impedanse and low output impedanse, which is important in maintain the amplitude and integrity of the input signal.
+
+\importimagewcaption{SOURCE-FOLLOWER.png}{Circuit diagram of a source follower}
+
+\subsection*{b) Do you know a name for the circuit depicted in Figure \ref{fig:common-source_apmplifier.png}?}
+Here we can se a common-source amplifier with a current-mirror active load. 
+\importimagewcaption{common-source_apmplifier.png}{A common-source amplifier
+with a current-mirror active load.}
+
+\subsection*{c) Could you explain about a couple or more useful applications for the circuit in
+Figure \ref{fig:common-source_apmplifier.png}?}
+
+This single-stage amplifier with an active load topology is often used as it has a high input impedance. It gets its high impedance from using an active load. By using an active load the circuit takes advantage of the nonlinear, large-signal transistror current-voltage relatiopnship to provide large small-signal resistances without large dc voltage drops This way it achieves high impedance without the use of excessively large resistors.
+
+\subsection*{d) Write an expression for the voltage gain of the circuit, $V_{\text {out }} / V_{\text {in }}$, and explain how it could be developed.}
+
+By looking at the small-signal equivalent circuit for the common-source amplifier in figure \ref{fig:small-signal_for_the_common-source_amplifier.png} where $V_{in}$ and $R_{in}$ are the Thévenin equivalent of the input source, while assuming that both transistors are in the active region. The output resistance, $R_2$, is made up of the parallel combintaion of the drain-to-source resistance of $Q_2$, that is, $r_{ds2}$ and the drain-to-source resistance of $Q_3$, that is, $r_{ds3}$. Using small-signal analysis, we have $v_{gs3}=v_{in}$, and therefore,
+
+\[A_v=\frac{V_{\text {out }}}{V_{\text {in }}}=-g_{\mathrm{m} 3} R_2=-g_{m 3}\left(r_{d s 2} \| r_{d s 3}\right)\]
+
+\importimagewcaption{small-signal_for_the_common-source_amplifier.png}{A small-signal equivalent circuit for the common-source amplifier.}
+

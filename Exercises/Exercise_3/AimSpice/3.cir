@@ -1,0 +1,21 @@
+*current mirror using a resistor
+vdd 1 0 1.8V
+VDC1 gnd 0 0
+Vgate 4 0 1.8V
+
+R 1 2 122.4K
+M1 2 2 0 0 NMOS L=1U W=5U
+M2 4 2 0 0 NMOS L=1U W=5U
+
+*.plot id(M1) id(M2)
+.plot rds(M1) rds(M2)
+*.param proc_delta = 1
+*.param vt_shift = 0
+*.include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/p18_model_card.inc
+*.include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/p18_cmos_models_ff.inc
+*.include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/p18_cmos_models_ss.inc
+.include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/p18_cmos_models_tt.inc
+
+
+.tran 1us 100us
+*.plot tran v(1) v(3)

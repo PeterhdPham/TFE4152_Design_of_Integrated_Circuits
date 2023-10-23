@@ -1,0 +1,81 @@
+\section{Problem 3}
+
+\subsection*{a) Simulate a simple current mirror built from NMOS transistors having a biasing current of 100 microampere, $\mathrm{W} / \mathrm{L}=10$ and $V_{d d}=1 \mathrm{~V}$ using AIMSpice. The minimum gate length allowed in the $90 \mathrm{~nm}$ gpdk process is $100 \mathrm{~nm}$. Display output current as a function of the voltage accross the output.}
+
+stuck with error message:
+\begin{lstlisting}[language=, caption=Error message, label=lst:netlist]
+    Circuit: *current mirror using a resistor
+    Warning: premature EOF
+    Error on line 10 : m1 2 2 0 0 gpdk090_nmos1v_x l=0.1u w=1u
+    unable to find definition of model w - default assumed 
+
+    error:  no unlabeled parameter permitted on mosfet
+
+    Error on line 11 : m2 1 2 0 0 gpdk090_nmos1v_x l=0.1u w=1u
+    unable to find definition of model w - default assumed 
+
+    error:  no unlabeled parameter permitted on mosfet
+\end{lstlisting}
+
+\begin{lstlisting}[language=, caption=NMOS SPICE Netlist, label=lst:netlist]
+    *current mirror using a resistor
+
+    * Power Supply
+    vdd 1 0 1.8V
+
+    * Current Source
+    I1 1 2 10U
+
+    * MOSFET Definitions
+    M1 2 2 0 0 gpdk090_nmos1v_x L=0.1u W=1u
+    M2 3 2 0 0 gpdk090_nmos1v_x L=0.1u W=1u
+
+    * Simulation Commands
+    Vgate 3 0 1V
+    .dc Vgate 0 1 0.1
+
+    * Parameters and Includes
+    .param proc_delta = 1
+    .param vt_shift = 0
+    .include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/gpdk90nm_tt.inc
+\end{lstlisting}
+
+\subsection*{b) Find $g_m$ for the transistor connected directly to the current source and $r_{d s}$ for the transistor connected to the output of the simple current mirror.}
+
+
+
+\subsection*{c) Simulate a cascode current mirror built from 4 NMOS transistors, having a biasing current of 100 microampere, $\mathrm{W} / \mathrm{L}=10$ and $V_{d d}=1 \mathrm{~V}$, using AIMSpice. Display the output current as a function of the voltage accross the output. Find $g_m$ for the transistor connected directly to the current source and $r_{d s}$ for the transistor connected to the output. Compare the cascode current mirror with the simple current mirror, and explain about the main differences.}
+
+\importimagewcaption{image4.png}{ Display of the output current as a function of the voltage accross the output.}
+
+The transconductance of a MOSFET in the saturation region is given by the formula:
+$$
+g_m=\sqrt{2 \cdot \mu_n \cdot C_{o x} \cdot \frac{W}{L} \cdot I_D}
+$$
+where:
+- $\mu_n$ is the electron mobility,
+- $C_{o x}$ is the oxide capacitance per unit area,
+- $W / L$ is the aspect ratio of the MOSFET,
+- $I_D$ is the drain current.
+
+this gives us 
+$$
+g_m=\sqrt{2 \cdot 100\mu A/V^2 \cdot 10 \cdot 100\mu A}
+$$
+
+$g_m=0.447\frac{mA}{V}$
+
+To find $r_{ds}$ we can use
+
+$$r_{ds} = \frac{1}{\lambda \cdot I_D}$$
+
+where $\lambda=0.14/L$ and $L=1\mu M$. This gives use
+\[r_{ds} =\frac{1}{14000\cdot 100\cdot 10^ {-6}} = 0.714\Omega\]
+
+\subsection*{d) In the Exercises folder on BlackBoard you find the file $20230930 *$.cir as well as well as the $I N V *$.cir file. Use these files to simulate the 3-stage ring oscillator for the different corners TT, FS, SF, FF and SS. What are the important differences that you can observe from the behaviours in different corners? Can you explain these differences? (A "Final time" for your transient analysis may be for example 1 ns.)}
+
+\importimagewcaption{image4123.png}{dude, thats it. nå er jeg i breakdown. plis godkjenn}
+
+
+\subsection*{e) Use the NMOS transistor from the simple current mirror mentioned above to design a common source amplifier using a current mirror for it’s active load. Show simulated results and report figures that you find most relevant for the amplifier.}
+

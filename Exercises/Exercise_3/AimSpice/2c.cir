@@ -1,0 +1,16 @@
+*current mirror using a resistor
+vdd 1 0 1.8V
+I1 1 2 10U
+VDC1 gnd 0 0
+
+M1 2 2 0 0 gpdk090_nmos1v_x L=0.1u W=1u
+M2 1 2 0 0 gpdk090_nmos1v_x L=0.1u W=1u
+
+.plot id(M1) id(M2)
+
+.param proc_delta = 1
+.param vt_shift = 0
+.include /home/peter/Shcool/TFE4152_Design_of_Integrated_Circuits/Exercises/Exercise_3/AimSpice/gpdk90nm_tt.cir
+
+.tran 1us 100us
+.plot tran v(1) v(3)
