@@ -1,0 +1,97 @@
+\section{Problem 2}
+\textbf{The following problems are related to the design of a Finite State Machine. The lecture notes from the 11th of October might be useful for some of the questions. (Those who did exercise 4 may find it useful to reuse parts of their solutions in this problem).}
+\subsection*{a) Make a state diagram that describes a Finite State Machine ("FSM") that detects sequences of 101 on it's x input. The output, $y$, should be high if, and only if, the mentioned sequence is detected.}
+\textbf{If your FSM should happen to enter any undefined state, let it return to the initial state when the earliest input is detected.}
+
+\importimagewcaption{FSM.png}{a Finite State Machine ("FSM") that
+detects sequences of 101 on it's x input.}
+
+\subsection*{b) Show the corresponding state table.}
+
+
+\begin{table}[H]
+    \centering
+    \caption{State table}
+    \begin{tabular}{|l|l|l|l|l|l|}
+        \hline
+    \multicolumn{2}{|l|}{Current state} &  Input& \multicolumn{2}{|l|}{Next state} & Output \\
+            $A$  &$B$& x &$A_{next}$&$B_{next}$& Y \\
+            \hline
+                0& 0 & 0 &     0    &    0     & 0 \\
+                0& 0 & 1 &     0    &    1     & 0 \\
+                0& 1 & 0 &     1    &    0     & 0 \\
+                0& 1 & 1 &     0    &    1     & 0 \\
+                1& 0 & 0 &     0    &    0     & 0 \\
+                1& 0 & 1 &     1    &    1     & 0 \\
+                1& 1 & 0 &     1    &    0     & 1 \\
+                1& 1 & 1 &     0    &    1     & 1 \\
+                \hline
+    \end{tabular}
+    \end{table}
+
+\subsection*{c) Use one or more positive edge triggered D-flip-flops and find the flip-flop input equations, as well as a Boolean expression for the $\mathrm{y}$ output.}
+
+$$y=AB\bar{x}+ABx=AB$$
+
+\begin{table}[H]
+\centering
+\caption{A}
+\begin{tabular}{llll}
+    \hline
+    A&B&x=0&x=1\\
+    \hline
+    0&0&0&0\\
+    0&1&1&0\\
+    1&0&0&1\\
+    1&1&1&0\\
+    \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{B}
+    \begin{tabular}{llll}
+        \hline
+        A&B&x=0&x=1\\
+        \hline
+        0&0&0&1\\
+        0&1&0&1\\
+        1&0&0&1\\
+        1&1&0&1\\
+        \hline
+    \end{tabular}
+    \end{table}
+
+\subsection*{d) Show how the combinatorial logic part could be implemented in Verilog, for a Moore machine implementation (where the output is defined by the state only).}
+\begin{lstlisting}
+module FSM(
+    input A;
+    input B;
+    output y;
+
+);
+and g1(y, A, B)
+end module
+\end{lstlisting}
+
+\subsection*{e) Estimate the total number of transistors that would be needed to implement your combinatorial logic part of the FSM from the previous problem, assuming that you are 
+restricted to basic Boolean gates (NAND, NOR, INVERT, XOR et cetera).}
+\importimagewcaptionw{transistor_FSM.png}{AND gate using transistors}{0.3}
+
+Using the design in figure \ref*{fig:transistor_FSM.png}, we need a total of 4 transistors to implement the combinatorial logic part of the FSM
+
+\subsection*{f) Using the same restrictions as for the previous question, try and see if you can find an implementation that uses fewer transistors. What's the total number now?}
+
+No, my design is perfect.
+
+\subsection*{g) Are you aware of any logic implementation style other than static CMOS that might have been used for the implementation of the combinatorial logic?}
+
+no, not yet. I assume that there is given this question.
+
+\subsection*{h) Choose one alternative logic implementation style and mention one potential positive side of the alternative, and one negative.}
+
+you could implement it using a NAND and a NOT gate to implement the same, which would be worse as it would require more transistors (6) (using CMOS)
+\subsection*{i) Explain how you would like to simulate the FSM, and verify it's functionality. How should the input signal and the clock signal be related, for example?}
+
+I would simulate it in a simple logic gate simulator on web as this isnt the most complex FSM. I would expect the FSM to trigger whenever clock goes from low to high.

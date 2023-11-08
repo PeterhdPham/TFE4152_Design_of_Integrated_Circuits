@@ -1,0 +1,65 @@
+\section{Problem 1}
+
+\textbf{Sketch transistor-level schematics for each of the following functions using CMOS logic.}
+\subsection*{a) $Y_1=A^{\prime} B+A C^{\prime}$}
+\importimagewcaptionh{1a.png}{implementation of $Y_1=A^{\prime} B+A C^{\prime}$.}{0.7}
+
+\subsection*{b) $Y_2=A^{\prime} B C+A B^{\prime}+A^{\prime} B^{\prime} C$}
+\importimagewcaptionh{1b.png}{implementation of $Y_2=A^{\prime} B C+A B^{\prime}+A^{\prime} B^{\prime} C$}{0.7}
+
+\subsection*{c) The logic implementation style that is most common is static CMOS. Can you explain about any reasons for this?}
+
+As CMOS circuits composes of a pull-up network, which is a set of PMOS transistors connected between VDD and the output line and pull-down network, which is a set of NMOS transistors connected between GND and the output line. This way there wil never be a direct path between VDD and GND. This offers a strong immunity from noise.
+
+\subsection*{d) Show how you could implement the function $Y_3=x z^{\prime}+x^{\prime} y$ using basic Boolean gates (like for example NAND2, INV, OR etc). Aim for the lowest number of transistors for your implementation, having static CMOS in mind. What's your total number of transistors, then?}
+\importimagewcaptionw{1d.png}{implementation of $Y_3=x z^{\prime}+x^{\prime} y$ using basic boolean gates}{0.7}
+Using this implementation I have use 16 transistors.
+\pagebreak
+\subsection*{e) Write your own gate-level Verilog code that implements the Boolean function $D_A$ $=\mathrm{A}^{\prime} \mathrm{B}+\mathrm{AC}$ '.}
+
+\begin{lstlisting}
+module D_a ( A ,B ,C ,d_a );
+input A ;
+wire A ;
+input B ;
+wire B ;
+input C ;
+wire C ;
+output d_a ;
+wire d_a ;
+//}} End of automatically maintained section
+not G1(An, A);
+not G2(Cn, C);
+and G3(AnB, An, B);
+and G4(CnA, Cn, A);
+or G5(d_a, CnA, AnB);
+endmodule
+\end{lstlisting}
+\pagebreak
+\subsection*{g) Use File $\rightarrow$ New $\rightarrow$ Waveform ... and Stimulators to make a simulation demonstrating that the function $D_A=\mathrm{A}^{\prime} \mathrm{B}+\mathrm{AC}$ ', based on your code, demonstrating the correct functionality. Include a screendump showing the simulated results, and compare them to a truth table for the function. Comment on your results.}
+
+\begin{table}[H]
+    \centering
+    \caption{Truth table for \( D_A = A' B + A C' \)}
+    \label{tab:truth_table_DA1}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \( A \) & \( B \) & \( C \) & \( Y_1 \) \\
+    \hline
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 1 \\
+    0 & 1 & 1 & 1 \\
+    1 & 0 & 0 & 1 \\
+    1 & 0 & 1 & 0 \\
+    1 & 1 & 0 & 1 \\
+    1 & 1 & 1 & 0 \\
+    \hline
+    \end{tabular}
+\end{table}
+\importimagewcaptionw{1g.png}{Simulation demostrating the function $D_A=\mathrm{A}^{\prime} \mathrm{B}+\mathrm{AC}$.}{1}
+
+After carefully inpecting the simulation and the truth table, I can confirm that I somehow didn't fail.
+
+
+

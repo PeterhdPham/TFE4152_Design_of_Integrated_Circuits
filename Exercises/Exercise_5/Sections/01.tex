@@ -1,0 +1,126 @@
+\section{Problem 1}
+\subsection*{a) Assume that both the gate lengths as well as $W_n$ for the $45 \mathrm{~nm}$ technology in Table 1.5 in "CJM", can have dimensions down to $45 \mathrm{~nm}$. Use $V_{d d}=1.2 \mathrm{~V}$. Construct an unskewed static CMOS inverter and explain your choices of 
+transistor dimensions.}
+
+\importimagewcaption{CMOS_inverter.png}{Transistor circuit of a static CMOS inverter}
+
+As the goal is to make an unskewed static cmos, we need booth the NMOS and CMOS transistors to have an equal rise and fall time of the output signal. As seen in Table 1.5 in "CJM" the mobility of the NMOS ($280\mu C_{ox}$) is a lot more than the mobility of the CMOS ($70\mu C_{ox}$).
+
+We can use the equation for drive current $I_D$ in saturation to determine what the dimmensions should be
+
+$$I_D=\frac{\mu_nC_{ox}}{2}\frac{W}{L}\left(V_{GS}-V_{tn}\right)^2$$
+
+As we want both current to be the same we get 
+
+$$
+\begin{aligned}
+    \mu_{n}C_{ox}\frac{W_p}{L_p}&=\mu_{p}C_{ox}\frac{W_n}{L_n}\\
+    70\frac{W_p}{L_p}&=280\frac{W_n}{L_n}\\
+    \frac{W_p}{L_p}&=4\frac{W_n}{L_n}
+\end{aligned}
+$$
+
+To ensure the unskewed property, I will keep $L$ the same for both mosfets. 
+
+\begin{table}[H]
+    \centering
+    \caption{Transistor dimmensions}
+    \begin{tabular}{lll}
+\hline
+& NMOS & PMOS \\
+\hline
+W& $45nm$ & $180nm$ \\
+L& $45nm$ &$45nm$ \\
+\hline
+    \end{tabular}
+    \end{table}
+
+\subsection*{b) For which technologies in Table 1.5 in CJM is it not possible to make a so called symmetric inverter? Explain your answer.}
+
+As there is no design rules I'll assume that we can just increase the width of the PMOS to make the transistors symmetric like we did in the previous problem. Therefore the PMOS can always be sized larger to compensate for its lower mobility. We do however see that $0.8 \mu m$ and $0.35 \mu m$ doesnt have a similar magnitude of $V_{t0}$, making them more difficult to make symmetric.
+
+\subsection*{c) Why may a symmetric inverter be more desirable than a non-symmetric one? Explain your answer.}
+
+We would like a symmetric inverter as
+\begin{enumerate}
+    \item They provide consistent signal propagation delays for both high-to-low and low-to-high transitions, which is important for timing analysis and clock distribution.
+    \item They improve the noise margins, making the circuit more robust to variations in voltage levels.
+    \item They can help in achieving a more predictable and stable operation of the digital circuit.
+\end{enumerate}
+
+\subsection*{d) Use $V_{d d}=1.2 \mathrm{~V}$ and the $45 \mathrm{~nm}$ technology mentioned above. Estimate the parasitic resistances, $R_p$ and $R_n$, for the PMOS and NMOS transistors in the inverter at the switching point.}
+
+$$
+\begin{aligned}
+    R_{o n}&=\frac{1}{\mu C_{o x}\left(\frac{W}{L}\right)\left(V_{D D}-V_t\right)}\\
+    R_{n}&=\frac{1}{\mu_nC_{ox}\left(V_{GS}-V_{t0}\right)}=\frac{1}{280\cdot10^{-6}\cdot\left(1.2-0.45\right)}=23.8 k\Omega\\
+    R_{n}&=\frac{1}{\mu_pC_{ox}\frac{W_p}{L_p}\left(V_{GS}-V_{t0}\right)}=\frac{1}{7010^{-6}\cdot\cdot\frac{180}{45}\cdot\left(1.2+0.45\right)}=23.8 k\Omega 
+\end{aligned}
+$$
+
+
+\subsection*{e) Find expressions for the rise- and fall-times for the symmetric inverter from problem 1 a) when $10 \%$ and $90 \%$ of the full voltage swing are used as limits for the corresponding rise- and fall-times. (The lecture notes from October 23rd contain information that might be useful.)}
+
+\subsubsection*{Fall time}
+$$t=\tau_n \ln \left(\frac{V_{DD}}{V_{out}}\right)\quad ,\tau_n=R_nC_{out}$$
+
+$$\begin{aligned}
+    t_f&=\tau_n \ln \left(\frac{V_{DD}}{0.1V_{DD}}\right)-\tau_n \ln \left(\frac{V_{DD}}{0.9V_{DD}}\right)\\
+    &=\tau_n \ln \left(10\right)- \tau_n \ln \left(\frac{10}{9}\right)\\
+    &=\tau_n \ln\left(9\right)\\
+    &= \tau_n 2.2
+\end{aligned}$$
+
+\subsubsection*{Rise time}
+$$
+\begin{aligned}
+    t_r&=\tau_p \ln\left(\frac{1}{9}\right)\\
+    &=\tau_p 2.2
+\end{aligned}
+$$
+
+\subsection*{f) Assume that the total capacitance seen on the output of the inverter is $5 \mathrm{fF}$. Estimate the rise- and fall-times when $10 \%$ and $90 \%$ are used as limits.}
+$$\begin{aligned}
+    t_n&=R_n\cdot C_{out}\cdot2.2=23.8\cdot 10^{3}\cdot5\cdot10^{-9}\cdot2.2=0.2618m S\\
+    t_p&=R_p\cdot C_{out}\cdot2.2=23.8\cdot 10^{3}\cdot5\cdot10^{-9}\cdot2.2=0.2618m S
+\end{aligned}$$
+
+
+\subsection*{g) What is the maximum operating frequency of the inverter from $1 \mathrm{f}$ )?}
+
+$$f_{max}=\frac{1}{t_r+t_f}=\frac{1}{2*0.0002618}=3820$$
+
+\subsection*{h) An inverter has a $V_{O H}$ of $1.92 \mathrm{~V}, V_{I H}$ of $1.58 \mathrm{~V}, V_{I L}$ of $0.68 \mathrm{~V}$ and a $V_{O L}$ of 0.17 V. Find it's noise margins, $N M_H$ and $N M_L$, as defined in your textbook by Weste Harris.}
+
+$$\begin{aligned}
+    NM_L&=V_{IL}-V_{OL}=0.68V-0.17V=0.51V\\
+    NM_H&=V_{OH}-V_{IH}=1.92V-1.58V=0.34V
+\end{aligned}$$
+
+\subsection*{i) Consider when two such inverters are coupled in series, and the voltage at the output of the first one drops by $0.5 \mathrm{~V}$ when the first inverter outputs the worst-case logic 1. Which consequences could follow?}
+
+This can result in $V_{OH}$ from the first inverter being lower than $V_{HI}$ on the second inverter, making the second inverter interpet the inputsignal as low.
+
+\subsection*{j) Similarly - what could happen if $0.5 \mathrm{~V}$ of noise were added to a worst-case logic low signal at the output of the first inverter?}
+
+This can result in $V_{OL}$ from the first inverter being higher than $V_{IL}$ on the second inverter, making the second inverter interpet the inputsignal as high.
+
+\subsection*{k) Explain about one or more important differences between latches and flip-flops.}
+
+Flip-flops are edge triggered, while latches are input triggered
+
+\subsection*{1) Draw a timing diagram including the data input signal, the clock signal, and the $Q$ and Q' outputs for a negative-edge triggered D-flip-flop.}
+
+\begin{table}[H]
+    \centering
+    \caption{Timing diagram}
+    \begin{tabular}{llll}
+\hline
+D& CLK & Q & Q'\\
+\hline
+x&$\uparrow$ &Q& Q' \\
+0&$\downarrow$ &0&$1$ \\
+1&$\downarrow$&1&0\\
+\hline
+    \end{tabular}
+    \end{table}

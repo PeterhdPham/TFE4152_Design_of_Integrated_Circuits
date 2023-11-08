@@ -1,0 +1,86 @@
+\section{Problem 2}
+
+\textbf{A NMOS switch is connected in series with an inverter as seen in Figure \ref{fig:inverter.png}. Assume that the total capacitance at node $X$ is $C_X=12 \mathrm{fF}$, that $V_A=V_{D D}=1.8 \mathrm{~V}$ and that $C_x$ is initially discharged to $0 \mathrm{~V}$. M1 and M3 both have $\mathrm{W}=0.5 \mu \mathrm{m}$ and $\mathrm{L}=0.22 \mu \mathrm{m}$. M2 have $\mathrm{W}=1.5 \mu \mathrm{m}$ and $\mathrm{L}=0.18 \mu \mathrm{m}$. Use process parameters for the $0.18 \mu \mathrm{m}$ CMOS process in Table \ref{tab:MOSFET_parameters}. You may ignore channel length modulation and the body effect.}
+
+\importimagewcaption{inverter.png}{Inverter driven by a single NMOS switch.}
+\begin{table}[H]
+    \centering
+    \caption{MOSFET parameters for a \SI{180}{nm} transistor technology, from CJM.}
+    \label{tab:MOSFET_parameters}
+    \begin{tabular}{ccc}
+    \hline 
+    Parameter & NMOS & PMOS \\
+    \hline 
+    Technology & \multicolumn{2}{c}{\SI{180}{nm}} \\
+    \(\mu C_{ox}\) [\si{\micro\ampere/\volt^2}] & 270 & 70 \\
+    \(V_t\) [\si{\volt}] & 0.45 & -0.45 \\
+    \(\lambda L\) [\si{\micro\meter/\volt}] & 0.08 & 0.08 \\
+    \(C_{ox}\) [\si{\femto\farad/\micro\meter^2}] & 8.5 & 8.5 \\
+    \(t_{ox}\) [\si{\nano\meter}] & 5 & 5 \\
+    \(n\) & 1.6 & 1.7 \\
+    \(\sigma\) [\si{1/\volt}] & 1.7 & 1.0 \\
+    \(m\) & 1.6 & 2.4 \\
+    \(C_{ov}/W=L_{ov} C_{ox}\) [\si{\femto\farad/\micro\meter}] & 0.35 & 0.35 \\
+    \(C_{db}/W=C_{sb}/W\) [\si{\femto\farad/\micro\meter}] & 0.50 & 0.55 \\
+    \hline
+    \end{tabular}
+\end{table}
+
+\subsection*{a) Ignoring subthreshold operation of transistor M1, what is the voltage that would occur on node $X$ if $V_{i n}$ changed from $0 \mathrm{~V}$ to $0.9 V_{D D}$ ?}
+By the ignoring subthreshold operation, we can assume that $I_D$ is given by
+
+$$I_D=\frac{\mu_nC_{ox}}{2}\frac{W}{L}\left(V_{GS}-V_{t}\right)^2$$
+
+in terms of M2 (PMOS):
+$$I_{D2}=\frac{\mu_nC_{ox}}{2}\frac{W_2}{L_2}\left(V_{DD}-V_X-V_{t}\right)^2$$
+
+and for M3 (NMOS):
+$$I_{D3}=\frac{\mu_nC_{ox}}{2}\frac{W_3}{L_3}\left(V_{X}-V_{t}\right)^2$$
+
+At switching we have that 
+
+$$\frac{\mu_nC_{ox}}{2}\frac{W_2}{L_2}\left(V_{DD}-V_X-V_{t}\right)^2=\frac{\mu_nC_{ox}}{2}\frac{W_3}{L_3}\left(V_{X}-V_{t}\right)^2$$
+
+$$\frac{\frac{\mu_nC_{ox}}{2}\frac{W_2}{L_2}}{\frac{\mu_nC_{ox}}{2}\frac{W_3}{L_3}}\left(V_{DD}-V_X-V_{t}\right)^2=\left(V_{X}-V_{t}\right)^2$$
+
+$$\frac{\frac{\mu_nC_{ox}}{2}\frac{W_2}{L_2}}{\frac{\mu_nC_{ox}}{2}\frac{W_3}{L_3}}\left(V_{DD}-V_{t}\right)^2-2\left(V_{DD}-V_{t}\right)V_X+V_X^2=V_{X}^2-2V_{X}V_{t}+V_{t}^2$$
+
+$$\frac{\frac{\mu_nC_{ox}}{2}\frac{W_2}{L_2}}{\frac{\mu_nC_{ox}}{2}\frac{W_3}{L_3}}\left(V_{DD}-V_{t}\right)^2-2\left(V_{DD}-V_{t}\right)V_X+V_X^2-V_{t}^2=V_{X}^2-2V_{X}V_{t}$$
+solving in python:
+\begin{lstlisting}
+from sympy import symbols, solve
+
+# Redefining the variables and the given equation
+mu_n, C_ox, W_2, L_2, W_3, L_3, V_DD, V_t, V_X = 
+symbols('mu_n C_ox W_2 L_2 W_3 L_3 V_DD V_t V_X')
+
+# Given equation
+equation = (mu_n*C_ox/2 * (W_2/L_2) / (mu_n*C_ox/2 * (W_3/L_3))) *
+ (V_DD - V_X - V_t)**2 - (V_X - V_t)**2
+
+# Solving for V_X
+V_X_solution = solve(equation, V_X)
+print(V_X_solution)
+[(L_2*V_t*W_3 - L_3*V_DD*W_2 + L_3*V_t*W_2 + sqrt(L_2*L_3*W_2*W_3)*
+(-V_DD + 2*V_t))/(L_2*W_3 - L_3*W_2), (L_2*V_t*W_3 - L_3*V_DD*W_2 + 
+L_3*V_t*W_2 + sqrt(L_2*L_3*W_2*W_3)*(V_DD - 2*V_t))/(L_2*W_3 - L_3*W_2)]
+\end{lstlisting}
+$$
+V_X=\frac{L_2 V_t W_3-L_3 V_{D D} W_2+L_3 V_t W_2 \pm \sqrt{L_2 L_3 W_2 W_3}\left(-V_{D D}+2 V_t\right)}{L_2 W_3-L_3 W_2}
+$$
+
+this is wrong, the kok says $V_X=V_A-V_t=1.8V-0.45V=1.35V$ 
+
+\begin{quote}
+    \textit{wtf!??? I give up in life, fuck this }\\
+    --- Peter Pham, 20:43 $\:$ \today 
+\end{quote}
+
+\begin{quote}
+    \textit{I'll never work with transistors when I finish stuDYING, NOBODY understand this shit}\\
+    --- Miki Tecle Hagos, 17:32 $\:$ \today $\:$: after looking at this problem for 3 hours
+\end{quote}
+
+\subsection*{b) How can you decrease the rise-time for the voltage signal at node $X$ by changing the switch transistor M1? Explain.}
+
+As the current dependent on $I_D \propto \frac{W}{L}$, we can increase the width to increase the current, that way the capacitor will charge up faster and give us a decreased rise-time.
